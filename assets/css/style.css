@@ -1,0 +1,501 @@
+html{
+  font-size: 10px;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  user-select: none;
+}
+
+*, *::before, *::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+:root{
+  --hue: 190;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header{
+  width: 100%;
+  height: 40vh;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: hsla(var(--hue), 51%, 51%, 1);
+  font-family: monospace;
+  background-image: url(https://60fps.in/wp-content/uploads/2021/06/best-games-for-gtx-1650-laptop.jpg);
+  background-size: contain;
+  backdrop-filter: blur(1px);
+}
+
+.header p{
+  padding: 1rem;
+  width: 50%;
+  text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 20px brown;
+}
+
+
+.nav{
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.filters{
+  width: 100%;
+  height: 3rem;
+  font-weight: bold;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.filters > div{
+  position: relative;
+}
+
+.filters > div > p {
+  font-size: 1.5rem;
+  color: hsla(var(--hue), 60%, 42%, 1);
+  text-decoration: underline;
+}
+
+.filters > div > p::after {
+  content: ">";
+  display: inline-block;
+  vertical-align: middle;
+  transform: rotate(90deg);
+  transition: transform 0.3s;
+  margin-left: 0.2rem;
+}
+
+.filters > div:hover > p::after{
+  transform: rotate(-90deg);
+}
+
+.filters ul{
+  list-style-type: none;
+  display: none;
+  padding: 1rem;
+  font-size: 1.3rem;
+  position: absolute;
+  transform: translateX(-4rem);
+  max-height: 14rem;
+  width: max-content;
+  overflow-y: scroll;
+  background-color: white;
+  box-shadow: 3px 3px 4px gray;
+  border-radius: 1rem;
+}
+
+/* .filters > div:nth-child(3) ul{
+  right: 0;
+} */
+
+
+.filters > div:hover > ul{
+  display: initial;
+}
+
+.games{
+  padding: 0.4rem;
+  width: 95%;
+  min-height: 75vh;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: min-content;
+  grid-gap: 1rem;
+  overflow-y: auto;
+}
+
+.games__card{
+  width: 100%;
+  min-width: 0;
+  height: fit-content;
+  background-color: hsla(var(--hue), 60%, 42%, 1);
+  font-size: 1.3rem;
+  color: white;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+  box-shadow: 0 0 10px white;
+  transform: scale(1);
+  z-index: 0;
+  transition: transform 0.3s, z-index 0.4s;
+}
+
+.games__card:hover{
+  z-index: 1;
+  transform: scale(1.2);
+  transition: transform 0.3s;
+}
+
+.games__card:nth-child(1):hover{
+  transform: scale(1.2) translate(8%, 8%);
+}
+
+.games__card__thumbnail{
+  width: 100%;
+  min-height: 10rem;
+  height: auto;
+}
+
+.games__card__info > div{
+  width: 100%;
+  padding: 0.5rem 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.games__card__info__name{
+  flex: 3;
+  font-size: 1.6rem;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.games__card__info__play-button{
+  flex: 1;
+  color: white;
+  padding: 0.3rem 1rem;
+  background-color: mediumseagreen;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 600;
+  border-radius: 0.3rem;
+}
+
+.games__card__info__play-button .fa-playstation::before{
+  margin-right: 0.3rem;
+}
+
+.games__card__info__description{
+  color: hsla(0, 0%, 100%, 0.78);
+  font-size: 1.35rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
+.games__card__info__genre{
+  padding: 0.4rem 0.3rem;
+  background-color: hsla(var(--hue), 60%, 46%, 1);
+  border-radius: 0.5rem;
+}
+
+.games__card__info__platforms{
+  list-style: none;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+.games__card__info__platforms li{
+  padding: 0 1rem;
+}
+
+
+@keyframes loading-skeleton {
+    from{
+      background-color: hsla(var(--hue), 60%, 42%, 0.5);
+    }
+    50%{
+      background-color: hsla(var(--hue), 60%, 42%, 0.25);
+    }
+    to{
+      background-color: hsla(var(--hue), 60%, 42%, 0.5);
+    }
+}
+
+.dummy-card-skeleton{
+  padding: 0.5rem;
+  background-color: hsla(var(--hue), 60%, 42%, 0.35);
+  border-radius: 1rem;
+}
+.dummy-card-skeleton > div:nth-child(1){
+  width: 100%;
+  height: 11rem;
+  border-radius: 1rem;
+  animation-name: loading-skeleton;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+.dummy-card-skeleton > div:nth-child(2){
+  margin-top: 0.5rem;
+  height: 2rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dummy-card-skeleton .name{
+  width: 70%;
+  height: 100%;
+  border-radius: 1rem;
+  animation-name: loading-skeleton;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+.dummy-card-skeleton .play-button{
+  width: 20%;
+  height: 100%;
+  border-radius: 1rem;
+  animation-name: loading-skeleton;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+
+.dummy-card-skeleton p{
+  margin-top: 0.4rem;
+  width: 100%;
+  height: 1.5rem;
+  border-radius: 1rem;
+  animation-name: loading-skeleton;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+.failure{
+  color: hsla(var(--hue), 60%, 42%, 1);
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+
+.game-info-model{
+  position: fixed;
+  padding: 3% 10%;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  background-color: hsla(0, 0%, 100%, 0.388);
+  z-index: 3;
+  backdrop-filter: blur(2px);
+}
+
+.game-info-model__content{
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 1rem;
+}
+
+.game-info-model__images-div{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 100%);
+  overflow: hidden;
+}
+.game-info-model__images-div img{
+  width: 100%;
+}
+
+.game-info-model__content > div:nth-child(2){
+  padding: 0 1rem;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.game-info-model__play-button{
+  color: white;
+  background-color: mediumseagreen;
+  padding: 0.3rem 0.8rem;
+  text-decoration: none;
+  border-radius: 0.3rem;
+}
+
+.game-info-model__description{
+  padding: 0.4rem 1rem;
+  font-size: 1.4rem;
+}
+
+.game-info-model__content > div:nth-child(3){
+  padding: 0 1rem;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.game-info-model__genre{
+  padding: 0.3rem 1rem;
+  border-radius: 0.4rem;
+  background-color: hsla(var(--hue), 60%, 42%, 0.7);
+  color: white;
+  height: fit-content;
+  font-size: 15px;
+}
+
+.game-info-model__platforms {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  font-size: 2.5rem;
+}
+.game-info-model__platforms li{
+  color: hsla(var(--hue), 60%, 42%, 1);
+  padding: 0 1rem;
+}
+
+.game-info-model__requirements{
+  padding: 1rem;
+}
+
+.game-info-model__requirements > p{
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 1rem;
+}
+
+.game-info-model__requirements table{
+  width: 100%;
+  font-size: 1.3rem;
+  border-collapse: collapse;
+}
+
+/* .game-info-model__requirements table > tr:nth-child(odd){
+  background-color: black;
+} */
+tr:nth-child(odd){
+  background-color: lightgray;
+}
+
+tr:nth-child(even){
+  background-color: aliceblue;
+}
+
+.game-info-model__requirements table td, .game-info-model__requirements table th{
+  padding: 0.3rem;
+  text-align: left;
+}
+
+.footer{
+  width: 98%;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+  background-color: hsla(var(--hue), 60%, 42%, 1);
+  color: white;
+  font-size: 1.6rem;
+  border-radius: 1rem;
+  line-height: 2rem;
+}
+
+.footer > p{
+  margin: 1rem auto;
+}
+
+.hidden{
+  display: none;
+}
+
+
+@media(max-width: 1000px){
+  .games__card__info__play-button{
+    flex: 2;
+  }
+}
+
+@media(min-width: 721px){
+  .games__card:nth-child(-n+4):hover{
+    transform: scale(1.2) translate(0, 8%);
+  }
+
+  .games__card:nth-last-child(-n+4):hover{
+    transform: scale(1.2) translate(0, -8%);
+  }
+
+  .games__card:nth-child(4n):hover{
+    transform: scale(1.2) translate(-8%, 0);
+  }
+
+  .games__card:nth-child(4n+1):hover{
+    transform: scale(1.2) translate(8%, 0);
+  }
+
+  .games__card:nth-child(4):hover{
+    transform: scale(1.2) translate(-8%, 8%);
+  }
+}
+
+@media(max-width: 720px){
+  .games{
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .games__card:nth-child(-n+3):hover{
+    transform: scale(1.2) translate(0, 8%);
+  }
+
+  .games__card:nth-last-child(-n+3):hover{
+    transform: scale(1.2) translate(0, -8%);
+  }
+
+  .games__card:nth-child(3n):hover{
+    transform: scale(1.2) translate(-8%, 0%);
+  }
+
+  .games__card:nth-child(3n+1):hover{
+    transform: scale(1.2) translate(8%, 0);
+  }
+
+  .games__card:nth-child(3):hover{
+    transform: scale(1.2) translate(-8%, 8%);
+  }
+}
+
+@media(max-width: 480px){
+
+  .header p{
+    width: 75%;
+  }
+
+  .games{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .games__card:nth-child(-n+2):hover{
+    transform: scale(1.2) translate(0, 8%);
+  }
+
+  .games__card:nth-last-child(-n+2):hover{
+    transform: scale(1.2) translate(0, -8%);
+  }
+
+  .games__card:nth-child(2n):hover{
+    transform: scale(1.2) translate(-8%, 0%);
+  }
+
+  .games__card:nth-child(2n+1):hover{
+    transform: scale(1.2) translate(8%, 0);
+  }
+
+  .games__card:nth-child(2):hover{
+    transform: scale(1.2) translate(-8%, 8%);
+  }
+}
+
+.games__card:nth-child(1):hover{
+  transform: scale(1.2) translate(8%, 8%);
+}

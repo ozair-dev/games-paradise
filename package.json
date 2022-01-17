@@ -1,0 +1,18 @@
+{
+  "name": "games-paradise",
+  "description": "A Free to Play PC and Browser Games collection app built with Vanilla JavaScript",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ozair-dev/games-paradise.git"
+  },
+  "keywords": ["vanilla", "javascript","vanilla-javascript", "games-collection", "free-games-collection"]
+}

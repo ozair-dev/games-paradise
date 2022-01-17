@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- header -->
+      <header class="header">
+        <p>Free To Play Epic Games</p>
+      </header>
+
+      <!-- navbar -->
+      <nav class="nav">
+        <!-- filters -->
+        <div class="filters">
+          <div class="filters__tags">
+            <p>Tags</p>
+            <!-- Inputs are added through JavaScript because it's a long list -->
+          </div>
+
+          <div class="filters__platform">
+            <p>Platform</p>
+            <ul>
+              <li><label><input type="radio" name="platform" value="all" checked>ALL</label></li>
+              <li><label><input type="radio" name="platform" value="browser">BROWSER</label></li>
+              <li><label><input type="radio" name="platform" value="pc">PC</label></li>
+            </ul>
+          </div>
+
+          <div class="filters__sort">
+            <p>Sort</p>
+            <ul>
+              <li><label><input type="radio" name="sort-by" value="relevance" checked >relevance</label></li>
+              <li><label><input type="radio" name="sort-by" value="release-date">release-date</label></li>
+              <li><label><input type="radio" name="sort-by" value="popularity">popularity</label></li>
+              <li><label><input type="radio" name="sort-by" value="alphabetical">alphabetical</label></li>
+            </ul>
+          </div>
+        </div>
+
+      </nav>
+      <!-- Div containing cards (game info) -->
+      <div class="games">
+      </div>
+      <!-- Credits -->
+      <footer class="footer">
+        <p>The Games Data is provided by <a href="https://www.FreeToGame.com">FreeToGame.com</a>. Check their Games Database API here <a href="https://www.freetogame.com/api-doc">here.</a></p>
+        <p>Github Repository Link for this projectt 👉 <a href="">games-paradise</a> </p>
+      </footer>
+
+      <!-- game card -->
+      <!-- <div class="games__card dummy-card hidden">
+        <img class="games__card__thumbnail" loading="lazy" src="https://www.freetogame.com/g/181/thumbnail.jpg" alt="8BitMMO">
+        <div class="games__card__info">
+          <div>
+            <p class="games__card__info__name">8BitMMO 8BitMMO</p>
+            <a class="games__card__info__play-button" href="https://www.freetogame.com/open/8bitmmo" target="_blank">Play</a>
+          </div>
+          <p class="games__card__info__description">A free to play retro\u00ad-style 2D MMO and a giant construction sandbox!</p>
+          <div>
+            <p class="games__card__info__genre">MMORPG</p>
+            <ul class="games__card__info__platforms">
+            </ul>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Dummt game card skeleton to be cloned -->
+      <div class="dummy-card-skeleton hidden">
+        <div class="image"></div>
+        <div>
+          <div class="name"></div>
+          <div class="play-button"></div>
+        </div>
+        <p></p>
+        <p></p>
+      </div>
+
+      <div class="game-info-model hidden">
+        <div class="game-info-model__content">
+          <div class="game-info-model__images-div">
+            <img src="https:\/\/www.freetogame.com\/g\/179\/Transformice-1.jpg" alt="some image">
+            <img src="https:\/\/www.freetogame.com\/g\/179\/Transformice-2.jpg" alt="some image">
+          </div>
+          <div>
+            <p class=".game-info-model__name">World Of Tanks</p>
+            <a class="game-info-model__play-button" href=""><i class="fa-brands fa-playstation"></i>Play</a>
+          </div>
+
+          <div>
+            <p class="game-info-model__genre">SHOOTING</p>
+            <ul class="game-info-model__platforms">
+              <li><i class="fa-brands fa-windows"></i></li>
+              <li><i class="fa-brands fa-chrome"></i></li>
+            </ul>
+          </div>
+          <p class="game-info-model__description">Transformice is a cute little free-to-play massively multiplayer platformer from French developer Atelier 801 that puts you and a bunch of your closest friends \u2013 or maybe enemies \u2013 on a quest for cheese. Each level consists of a piece of cheese and a hole to serve as a start and end point. Players have two minutes to get to the cheese and get back to the hole, jockeying for position with other mice along the way. In addition to pits, ledges, and other difficult-to-reach places, some levels include elements with physics-based properties, such as bridges that wobble and snap if too many mice are on it.\r\n\r\nOne mouse on each level is the shaman, who has mystical powers that allow him to place elements in the world to (theoretically) help all mice reach the cheese. He can bridge gaps or build ramps to help, and the more mice who reach the cheese on his watch, the faster he progresses up the shaman skill tree to learn even more impressive talents. But a poor shaman can also just get in the way, \u201caccidentally\u201d blocking off areas and leading mice to their doom.\r\n\r\nWith seven game modes, hundreds of official maps, and millions of player-created maps, no two rounds of Transformice are ever exactly the same. The cash shop consists of only one type of item \u2013 hats \u2013 which have no gameplay benefits and can be earned in-game, though be warned: Some are incredibly difficult to obtain!\r\n\r\nThere\u2019s even an adorable cartoon show based on the game that you can view on the website or via the Transformice YouTube channel. In the end, don\u2019t be be fooled by Transformice\u2019s cutesy graphics and theme \u2013 as one player puts it, it\u2019s not a kids\u2019 game, but a game you win with \u201cthe blood of the other mice you need to trample over to get the cheese and get to the goal to see your wife and family.\u201d</p>
+          <div class="game-info-model__requirements">
+            <p>System Requirements</p>
+            <table>
+              <tbody>
+                <tr>
+                  <th>OS</th>
+                  <td>Windoes XP</td>
+                </tr>
+                <tr>
+                  <th>Processor</th>
+                  <td>1GHz</td>
+                </tr>
+                <tr>
+                  <th>MEMORY</th>
+                  <td>512 MB RAM</td>
+                </tr>
+                <tr>
+                  <th>Graphics</th>
+                  <td>?</td>
+                </tr>
+                <tr>
+                  <th>Storage</th>
+                  <td>60 MB available space</td>
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="./assets/js/mainn.js" defer></script>
+  </body>
+</html>
